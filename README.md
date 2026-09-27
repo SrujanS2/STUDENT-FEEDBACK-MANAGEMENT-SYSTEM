@@ -18,6 +18,7 @@ A simple web application to collect and analyse student feedback on courses, bui
 10. [Database design](#database-design)
 11. [Git workflow](#git-workflow)
 12. [Troubleshooting](#troubleshooting)
+13. [License](#license)
 
 ---
 
@@ -212,7 +213,8 @@ Expected result: **27 passed**. The tests use temporary databases, so your `feed
 ├── README.md               # This file
 ├── files.md                # Description of every project file
 ├── PROMPTS.md              # All AI prompts used during development
-└── PROJECT_REPORT.md       # Assessment project report
+├── PROJECT_REPORT.md       # Assessment project report
+└── LICENSE                 # MIT License
 ```
 
 ---
@@ -285,3 +287,11 @@ Useful checks: `git branch -a`, `git log --oneline --graph --all`, `git status`.
 | `database is locked` | Close any other program that has `feedback.db` open (e.g. DB Browser), then retry. |
 | Git: *"detected dubious ownership"* | `git config --global --add safe.directory "*"` |
 | `git push` rejected after history was rewritten | `git push --force-with-lease origin feature/category-summary` |
+
+---
+
+## License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+Copyright (c) 2026 Srujankumar M Singannavar
