@@ -45,7 +45,7 @@ def test_submit_feedback_validation_error():
 
 
 @pytest.mark.parametrize("page", ["View Feedback Records", "Rating Summary",
-                                  "Database Info"])
+                                  "Course-wise Summary", "Database Info"])
 def test_pages_render_empty_and_populated(page):
     at = run_page(page)
     assert not at.exception

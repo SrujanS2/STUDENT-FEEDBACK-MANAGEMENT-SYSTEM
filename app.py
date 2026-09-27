@@ -17,6 +17,7 @@ PAGES = [
     "Submit Feedback",
     "View Feedback Records",
     "Rating Summary",
+    "Course-wise Summary",
     "Database Info",
 ]
 
@@ -105,6 +106,27 @@ def summary_page():
                  x_label="Rating (1-5)", y_label="Number of responses")
 
 
+# ---------------------------------------------------------------- Feature 5
+def course_summary_page():
+    st.header("Course-wise Rating Summary")
+    summary = db.get_course_summary()
+    if not summary:
+        st.info("No feedback yet - course summary will appear once records exist.")
+        return
+    df = pd.DataFrame(summary).rename(columns={
+        "course_name": "Course Name", "total_feedback": "Total Feedback",
+        "avg_rating": "Average Rating", "min_rating": "Lowest Rating",
+        "max_rating": "Highest Rating"})
+    st.dataframe(df, use_container_width=True, hide_index=True)
+
+    st.subheader("Average Rating by Course")
+    st.bar_chart(df, x="Course Name", y="Average Rating", color="#16a34a",
+                 horizontal=True, x_label="Average rating (out of 5)", y_label="")
+
+    st.download_button("Download summary as CSV", df.to_csv(index=False),
+                       file_name="course_summary.csv", mime="text/csv")
+
+
 # ------------------------------------------------------------ DB evidence
 def database_page():
     st.header("Database Info")
@@ -121,5 +143,6 @@ def database_page():
     "Submit Feedback": submit_page,
     "View Feedback Records": view_page,
     "Rating Summary": summary_page,
+    "Course-wise Summary": course_summary_page,
     "Database Info": database_page,
 }[page]()
